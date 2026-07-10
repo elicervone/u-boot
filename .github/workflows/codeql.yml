@@ -36,7 +36,7 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
-        queries: ./.github/codeql/test.ql
+        config-file: ./.github/codeql/codeql-config.yml
 
     - name: Minimal Build (just for CodeQL analysis)
       run: |
