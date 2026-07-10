@@ -1,4 +1,4 @@
 name: "Custom taint tracking config"
 disable-default-queries: true
 queries:
-  - uses: ./.github/codeql/test.ql
+  - uses: test.ql
