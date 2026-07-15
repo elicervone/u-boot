@@ -38,6 +38,10 @@ module MyConfig implements DataFlow::ConfigSig {
 module MyTaint = TaintTracking::Global<MyConfig>;
 import MyTaint::PathGraph
 
-from MyTaint::PathNode source, MyTaint::PathNode sink
+/*from MyTaint::PathNode source, MyTaint::PathNode sink
 where MyTaint::flowPath(source, sink) 
-select sink, source, sink, "Network byte swap flows to memcpy"
+select sink, source, sink, "Network byte swap flows to memcpy"*/
+
+from DataFlow::Node sink
+where exists(DataFlow::Node source | MyTaint::flow(source, sink))
+select sink, "Network byte swap flows to memcpy (this length argument is tainted).”
